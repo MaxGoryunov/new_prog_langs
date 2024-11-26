@@ -1,4 +1,4 @@
-defmodule WordLetterCounter do
+defmodule WordLetterCount do
   def run do
     IO.puts("Do you want to provide input from console or file? (type 'console' or 'file')")
     input_type = IO.gets("") |> String.trim()
@@ -54,8 +54,9 @@ defmodule WordLetterCounter do
     |> Enum.frequencies()
   end
   defp write_to_file(filename, counts) do
-    File.write!(filename, Enum.map_join(counts, "\n", fn {k, v} -> "#{k} #{v}" end))
+    sorted_counts = counts |> Enum.sort_by(fn {_k, v} -> -v end)
+    File.write!(filename, Enum.map_join(sorted_counts, "\n", fn {k, v} -> "#{k} #{v}" end))
     IO.puts("Results written to #{filename}")
   end
 end
-WordLetterCounter.run()
+WordLetterCount.run()
