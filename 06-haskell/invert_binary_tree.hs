@@ -22,6 +22,7 @@ main :: IO ()
 main = do
     let tree = Node 1 (Node 2 (Node 4 Empty Empty) (Node 5 Empty Empty)) (Node 3 Empty Empty)
     putStrLn "Original Tree:"
+    printTree tree
     print $ invertTree tree 
     putStrLn "Tree Structure:"
-    printTree tree
+    printTree $ invertTree tree
