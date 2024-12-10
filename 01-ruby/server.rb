@@ -18,10 +18,12 @@ Thread.new do
           message = client.gets
           break if message.nil?
           message.chomp!
-          puts "Received message: #{message}"
+          timestamp = Time.now.strftime("%H:%M:%S")
+          formatted_message = "#{timestamp} - #{message}"
+          puts "Received message: #{formatted_message}"
           mutex.synchronize {
             clients.each do |c|
-              c.puts(message) unless c == client
+              c.puts(formatted_message) unless c == client
             end
           }
         end
