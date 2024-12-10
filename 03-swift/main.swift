@@ -7,7 +7,7 @@ func removeDuplicateWords(from text: String) -> String {
         let trimmed = word.trimmingCharacters(in: .whitespacesAndNewlines)
         if !visited.contains(trimmed) {
             visited.insert(trimmed)
-            constructed.append(String(trimmed))
+            constructed.append(trimmed)
         }
     }
     return constructed.joined(separator: " ")
