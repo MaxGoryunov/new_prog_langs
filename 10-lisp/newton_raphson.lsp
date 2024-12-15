@@ -8,7 +8,6 @@
     ((listp expr)
     (if (eq (car expr) '+)
         (mapcar (lambda (term) (differentiate term var)) (cdr expr))
-        ;; If it's a product, use the product rule
         (if (eq (car expr) '*)
               (let ((terms (cdr expr)) (prod_sum '(+)))
                 (format t "terms = ~a~%" terms)
@@ -16,7 +15,7 @@
                   (let* ((u (nth i terms))
                         (v (remove-nth i terms))
                         (curval (concatenate 'list '(*) (list (differentiate u var)) v )) )
-                    (format t "u = ~a~%" curval)
+                    (format t "curval = ~a~%" curval)
                     (setf prod_sum (append prod_sum (list curval)))
                     
                   )
