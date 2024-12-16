@@ -27,7 +27,7 @@ object JsonYamlConverter {
 
   def yamlToJson(yaml: String): String = {
     var indent = 0
-    var shift = 2
+    val shift = 2
     var jsonString = "{\n"
     val lines = yaml.split("\n")
     for (line <- lines) {
