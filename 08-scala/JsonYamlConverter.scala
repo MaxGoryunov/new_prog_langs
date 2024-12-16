@@ -8,19 +8,24 @@ object JsonYamlConverter {
   }
 
   def jsonToYaml(json: String): String = {
-    // Basic conversion logic from JSON to YAML 
+    // println("mid = ")
+    // println(
+    //   json
+    //   .replace("{", "")
+    //   .replace(",", "")
+    //   .replace("\n}", "")
+    //   .replace("\"", "")
+    // )
     val yaml = json
       .replace("{", "")
-      .replace("}", "")
-      .replace(",", "\n")
-      .replace(":", ": ")
+      .replace(",", "")
+      .replace("\n}", "")
       .replace("\"", "")
       .trim
     yaml
   }
 
   def yamlToJson(yaml: String): String = {
-    // println(s"inner yaml = $yaml")
     var indent = 0
     var shift = 2
     var jsonString = "{\n"
@@ -42,23 +47,12 @@ object JsonYamlConverter {
       if (splits.length == 2) {
         jsonString += " " * indent + s"\"${splits(0).trim()}\": \"${splits(1).trim()}\",\n"
       } else {
-        jsonString += " " * indent + s"\"${splits(0).trim()}\": {\n"
+        jsonString += " " * indent + s"\"${splits(0).trim().dropRight(1)}\": {\n"
       }
     }
     jsonString += "}\n"
     println(s"$jsonString")
     jsonString
-    // println(s"mid result = ")
-    // // Basic conversion logic from YAML to JSON
-    // val json = "{" + yaml
-    //   .split("\n")
-    //   .map(line => {
-    //     println(s"line = $line")
-    //     val Array(key, value) = line.split(": ", 2)
-    //     s""""$key": "$value""""
-    //   })
-    //   .mkString(", ") + "}"
-    // json
   }
 
   def convertJsonToYaml(inputFile: String, outputFile: String): Unit = {
@@ -66,6 +60,8 @@ object JsonYamlConverter {
     println("json = ")
     println(json)
     val yaml = jsonToYaml(json)
+    // println("yaml = ")
+    // println(yaml)
 
     val writer = new PrintWriter(outputFile)
     writer.write(yaml)
@@ -84,7 +80,7 @@ object JsonYamlConverter {
   }
 
   def main(args: Array[String]): Unit = {
-    val jsonToYaml = true
+    val jsonToYaml = false
     var conversion = ""
     var inputFile = ""
     var outputFile = ""
