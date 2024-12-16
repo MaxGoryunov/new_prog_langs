@@ -63,7 +63,8 @@ object JsonYamlConverter {
 
   def convertJsonToYaml(inputFile: String, outputFile: String): Unit = {
     val json = Source.fromFile(inputFile).getLines().mkString("\n")
-    println()
+    println("json = ")
+    println(json)
     val yaml = jsonToYaml(json)
 
     val writer = new PrintWriter(outputFile)
@@ -83,7 +84,7 @@ object JsonYamlConverter {
   }
 
   def main(args: Array[String]): Unit = {
-    val jsonToYaml = false
+    val jsonToYaml = true
     var conversion = ""
     var inputFile = ""
     var outputFile = ""
