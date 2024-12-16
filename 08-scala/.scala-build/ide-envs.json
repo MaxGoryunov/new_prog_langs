@@ -1,0 +1,1 @@
+{"PATH":"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin","JAVA_OPTS":"-XX:+UseG1GC","JAVA_HOME":"/opt/graalvm-community-java22"}
